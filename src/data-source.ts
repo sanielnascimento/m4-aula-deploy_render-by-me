@@ -22,14 +22,14 @@ const dataSourceConfig = (): DataSourceOptions => {
     };
   }
 
-  if (nodeEnv === "production") {
-    return {
-      type: "postgres",
-      url: dbUrl,
-      entities: [entitiesPath],
-      migrations: [migrationPath],
-    };
-  }
+  // if (nodeEnv === "production") {
+  //   return {
+  //     type: "postgres",
+  //     url: dbUrl,
+  //     entities: [entitiesPath],
+  //     migrations: [migrationPath],
+  //   };
+  // }
 
   return {
     type: "postgres",
@@ -38,6 +38,9 @@ const dataSourceConfig = (): DataSourceOptions => {
     logging: true,
     migrations: [migrationPath],
     entities: [entitiesPath],
+    ssl: {
+      rejectUnauthorized: false,
+    },
   };
 };
 
